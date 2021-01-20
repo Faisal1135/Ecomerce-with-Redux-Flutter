@@ -3,6 +3,7 @@ import '../helpers/final_and_const.dart';
 import '../models/app_state.dart';
 import '../models/product.dart';
 import '../pages/product_details.dart';
+import '../reducer/actions.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class ProductItem extends StatelessWidget {
@@ -32,7 +33,10 @@ class ProductItem extends StatelessWidget {
                       ? IconButton(
                           icon: Icon(Icons.shopping_cart),
                           color: Colors.white,
-                          onPressed: () => print('pressed'))
+                          onPressed: () {
+                            StoreProvider.of<AppState>(context)
+                                .dispatch(toogleCartAction(item));
+                          })
                       : Text('');
                 })),
         child: Hero(

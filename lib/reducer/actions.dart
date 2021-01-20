@@ -1,6 +1,7 @@
 // Users Actions
 
 import 'package:flutter_ecomerce/helpers/final_and_const.dart';
+import 'package:flutter_ecomerce/models/cart_model.dart';
 import 'package:flutter_ecomerce/models/product.dart';
 import 'package:flutter_ecomerce/models/user_model.dart';
 import 'package:flutter_ecomerce/reducer/app_reducer.dart';
@@ -31,6 +32,41 @@ ThunkAction<AppState> getProducts = (Store<AppState> store) async {
     store.dispatch(GetProducts(parseItem));
   });
 };
+
+ThunkAction<AppState> toogleCartAction(Product product) {
+  return (Store<AppState> store) {
+    final cartItem = CartItem.cartFromProduct(product);
+    final storeCart = store.state.carts;
+    final currentCartitem = [...storeCart.products];
+    int index = currentCartitem.indexWhere((cart) => cart.id == cartItem.id);
+
+    if (index > -1) {
+      currentCartitem.removeAt(index);
+      var newQty = storeCart.products[index].qty + 1;
+
+      var newItem = cartItem.copyWith(qty: newQty);
+      print(newItem.toString());
+      currentCartitem.insert(index, newItem);
+      final newCarts = storeCart.copyWith(products: currentCartitem);
+      store.dispatch(AddToCart(newCarts));
+    } else {
+      currentCartitem.add(cartItem);
+
+      final newCarts = storeCart.copyWith(products: [
+        ...currentCartitem,
+      ]);
+
+      store.dispatch(AddToCart(newCarts));
+    }
+  };
+}
+
+class AddToCart {
+  final Carts _carts;
+  Carts get carts => this._carts;
+
+  AddToCart(this._carts);
+}
 
 class GetProducts {
   final List<Product> _product;

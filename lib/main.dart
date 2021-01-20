@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecomerce/auth/screens/login_screen.dart';
-import 'package:flutter_ecomerce/auth/screens/register_screen.dart';
-import 'package:flutter_ecomerce/models/app_state.dart';
-import 'package:flutter_ecomerce/pages/cart_screen.dart';
-import 'package:flutter_ecomerce/products/product_screen.dart';
-import 'package:flutter_ecomerce/reducer/app_reducer.dart';
+import './auth/screens/login_screen.dart';
+import './auth/screens/register_screen.dart';
+import './models/app_state.dart';
+import './pages/cart_screen.dart';
+import './products/product_screen.dart';
+import './reducer/app_reducer.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';

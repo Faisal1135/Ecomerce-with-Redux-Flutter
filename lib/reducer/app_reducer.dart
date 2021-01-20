@@ -8,7 +8,16 @@ AppState appReducer(state, action) {
     user: userReducer(state.user, action),
     isLoading: loadingReducer(state.isLoading, action),
     product: productReducer(state.product, action),
+    carts: cartReducer(state.carts, action),
   );
+}
+
+cartReducer(carts, action) {
+  print(carts.toString());
+  if (action is AddToCart) {
+    return action.carts;
+  }
+  return carts;
 }
 
 productReducer(List<Product> product, action) {

@@ -2,10 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecomerce/auth/screens/register_screen.dart';
 import 'package:flutter_ecomerce/models/app_state.dart';
+import 'package:flutter_ecomerce/pages/cart_screen.dart';
 import 'package:flutter_ecomerce/reducer/actions.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-const BASE_URL = "http://1aa8a900febd.ngrok.io";
+const BASE_URL = "http://4469772671ff.ngrok.io";
 
 final dio = Dio(BaseOptions(baseUrl: BASE_URL));
 
@@ -46,7 +47,8 @@ final kappBar = PreferredSize(
         leading: state.user != null
             ? IconButton(
                 icon: Icon(Icons.store),
-                onPressed: () => Navigator.pushNamed(context, '/cart'))
+                onPressed: () =>
+                    Navigator.pushNamed(context, CartScreen.routeName))
             : Text(''),
         actions: [
           Padding(
