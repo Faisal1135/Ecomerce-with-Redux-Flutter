@@ -4,6 +4,8 @@ class CartScreen extends StatelessWidget {
   static const routeName = 'cartScreen';
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('trotjrtj'),
+    );
   }
 }
